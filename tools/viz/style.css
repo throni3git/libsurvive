@@ -1,0 +1,57 @@
+#cam {
+  display: none;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  z-index: 100;
+}
+
+#cam-control {
+  z-index: 2;
+  border: 1px solid white;
+  position: absolute;
+}
+#console {
+  width: 30%;
+  min-width: 200px;
+  height: 200px;
+  border: 1px solid white;
+  position: absolute;
+  bottom: 20px;
+  overflow: auto;
+  white-space: pre;
+  background-color: rgba(0, 200, 200, 0.25);
+  z-index: 3;
+}
+#fps {
+  z-index: 3;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+#ThreeJS {
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+#time {
+  right: 20px;
+  width: 50%;
+  margin: 0px;
+  position: absolute;
+  bottom: 20px;
+  margin-left: -500px;
+  z-index: 3;
+}
+
+#tooltip {
+  z-index: 3;
+  display: none;
+  position: absolute;
+  background: lightyellow;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
