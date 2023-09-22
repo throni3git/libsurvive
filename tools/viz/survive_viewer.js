@@ -622,7 +622,7 @@ function create_tracked_object(info, external) {
 
 var displayTrails = false;
 var trails = {};
-var MAX_LINE_POINTS = 100000;
+var MAX_LINE_POINTS = 1000;
 var trail_colors = [
   0x173f5f, 0xed553b, 0xa8dadc, 0x0, 0xffffff, 0x11ff11, 0x8888ff, 0xff8888,
 ];
