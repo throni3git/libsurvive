@@ -1461,17 +1461,17 @@ function init() {
           case 0:
             x = i;
             y = 5;
-            color = 0xff;
+            color = 0x2222ff;
             break;
           case 1:
             x = i;
             y = -5;
-            color = 0xff00;
+            color = 0x22ff22;
             break;
           case 2:
             x = 5;
             y = i;
-            color = 0xff0000;
+            color = 0xff2222;
             break;
           case 3:
             x = -5;
@@ -1482,7 +1482,7 @@ function init() {
             x = 2 * z - 5;
             y = i;
             zz = 5;
-            color = 0xffff00;
+            color = 0xffff22;
             break;
         }
         var material = new THREE.MeshStandardMaterial({ color: color });
@@ -1514,6 +1514,10 @@ function init() {
   var light = new THREE.PointLight(0xffffff);
   light.position.set(0, 0, 5);
   scene.add(light);
+
+  var light2 = new THREE.HemisphereLight(0x999999, 0x666666);
+  light2.position.set(0.5, 1, 0.5);
+  scene.add(light2);
 
   var floorMaterial = new THREE.MeshBasicMaterial({
     color: 0x888888,
