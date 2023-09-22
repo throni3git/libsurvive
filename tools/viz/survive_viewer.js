@@ -1602,3 +1602,14 @@ function render() {
 
   renderer.render(scene, renderCamera);
 }
+
+window.addEventListener("resize", resize);
+function resize() {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  fpv_camera.aspect = window.innerWidth / window.innerHeight;
+  fpv_camera.updateProjectionMatrix();
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+}
