@@ -30,7 +30,7 @@ body {
 }
 
 #console {
-  width: 30%;
+  width: calc(50% - 6px - 3px);
   min-width: 200px;
   height: 200px;
   position: absolute;
@@ -58,12 +58,11 @@ body {
 }
 
 #time {
-  right: 20px;
-  width: 50%;
+  right: 6px;
+  width: calc(50% - 6px - 3px);
   margin: 0px;
   position: absolute;
   bottom: 20px;
-  margin-left: -500px;
   z-index: 3;
 }
 
