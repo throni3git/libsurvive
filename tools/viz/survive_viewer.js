@@ -1452,7 +1452,6 @@ function init() {
         var size = 0.1;
         var geometry = new THREE.BoxGeometry(size, size, size);
 
-        var cube = new THREE.Mesh(geometry, material);
         var x,
           y,
           zz = z,
@@ -1486,6 +1485,7 @@ function init() {
             break;
         }
         var material = new THREE.MeshStandardMaterial({ color: color });
+        var cube = new THREE.Mesh(geometry, material);
         cube.position.set(x, y, zz);
         scene.add(cube);
       }
