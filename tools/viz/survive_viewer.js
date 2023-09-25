@@ -780,6 +780,7 @@ var covar_canvas = {},
 function update_fullcov(v) {
   var name = v[1];
   if (covar_canvas[name] == null) {
+    var covarCanvasContainer = document.getElementById("covar_canvas_container")
     const canvas = document.createElement("canvas");
     canvas.className = "myClass";
     canvas.id = "myId";
@@ -790,12 +791,12 @@ function update_fullcov(v) {
 
     const div = document.createElement("div");
     div.innerText = name;
-    document.body.appendChild(div);
+    covarCanvasContainer.appendChild(div);
     div.style.cssText =
       "position: absolute;z-index: 11;width: 105px;bottom: 50px;image-rendering: pixelated;right: 225px;color: white;";
     div.style.right = 5 + Object.keys(covar_canvas).length * 110 + "px";
     covar_names[name] = div;
-    document.body.appendChild(canvas);
+    covarCanvasContainer.appendChild(canvas);
     covar_canvas[name] = canvas;
   }
 
@@ -831,6 +832,7 @@ function update_fullcov(v) {
 
 function display_matrix(name, rows, cols, fv) {
   if (covar_canvas[name] == null) {
+    var covarCanvasContainer = document.getElementById("covar_canvas_container")
     const canvas = document.createElement("canvas");
     canvas.className = "myClass";
     canvas.id = "myId";
@@ -841,12 +843,12 @@ function display_matrix(name, rows, cols, fv) {
 
     const div = document.createElement("div");
     div.innerText = name;
-    document.body.appendChild(div);
+    covarCanvasContainer.appendChild(div);
     div.style.cssText =
       "position: absolute;z-index: 11;width: 105px;bottom: 50px;image-rendering: pixelated;right: 225px;color: white;";
     div.style.right = 5 + Object.keys(covar_canvas).length * 110 + "px";
     covar_names[name] = div;
-    document.body.appendChild(canvas);
+    covarCanvasContainer.appendChild(canvas);
     covar_canvas[name] = canvas;
   }
 
