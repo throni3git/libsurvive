@@ -80,7 +80,7 @@ int main(int argc, char **argv) {
 
 			FLT v1 = survive_simple_object_get_input_axis(button_event->object, SURVIVE_AXIS_TRACKPAD_X) / 2. + .5;
 
-			if (button_event->button_id != 255) {
+			if (button_event->button_id != SURVIVE_BUTTON_UNKNOWN) {
 				printf(" button %16s (%2d) ", SurviveButtonsStr(subtype, button_event->button_id),
 					   button_event->button_id);
 
