@@ -23,6 +23,31 @@ static void log_fn(SurviveSimpleContext *actx, SurviveLogLevel logLevel, const c
 	fprintf(stderr, "(%7.3f) SimpleApi: %s\n", survive_simple_run_time(actx), msg);
 }
 
+void print_all_devices(SurviveSimpleContext *actx) {
+	for (const SurviveSimpleObject *it = survive_simple_get_first_object(actx); it != 0;
+		it = survive_simple_get_next_object(actx, it)) {
+		printf("Found '%s' (%s) (battery: %d)\n", 
+			survive_simple_object_name(it),
+			survive_simple_serial_number(it),
+			survive_simple_object_charge_percet(it)
+		);
+	}
+}
+
+void print_pose(const SurviveSimplePoseUpdatedEvent *pose_event) {
+	SurvivePose pose = pose_event->pose;
+	FLT timecode = pose_event->time;
+
+	printf("%s %s (%7.3f): POS: %f %f %f    QUAT: %f %f %f %f\n", 
+		survive_simple_object_name(pose_event->object),
+		survive_simple_serial_number(pose_event->object),
+		timecode,
+		pose.Pos[0], pose.Pos[1], pose.Pos[2],
+		pose.Rot[0], pose.Rot[1], pose.Rot[2], pose.Rot[3]
+	);
+}
+
+
 int main(int argc, char **argv) {
 #ifdef __linux__
 	signal(SIGINT, intHandler);
@@ -37,21 +62,14 @@ int main(int argc, char **argv) {
 	double start_time = OGGetAbsoluteTime();
 	survive_simple_start_thread(actx);
 
-	for (const SurviveSimpleObject *it = survive_simple_get_first_object(actx); it != 0;
-		 it = survive_simple_get_next_object(actx, it)) {
-		printf("Found '%s'\n", survive_simple_object_name(it));
-	}
+	print_all_devices(actx);
 
     struct SurviveSimpleEvent event = {0};
 	while (keepRunning && survive_simple_wait_for_event(actx, &event) != SurviveSimpleEventType_Shutdown) {
 		switch (event.event_type) {
 		case SurviveSimpleEventType_PoseUpdateEvent: {
 			const struct SurviveSimplePoseUpdatedEvent *pose_event = survive_simple_get_pose_updated_event(&event);
-			SurvivePose pose = pose_event->pose;
-			FLT timecode = pose_event->time;
-			/*printf("%s %s (%7.3f): %f %f %f %f %f %f %f\n", survive_simple_object_name(pose_event->object),
-				   survive_simple_serial_number(pose_event->object), timecode, pose.Pos[0], pose.Pos[1], pose.Pos[2],
-				   pose.Rot[0], pose.Rot[1], pose.Rot[2], pose.Rot[3]);*/
+			print_pose(pose_event);
 			break;
 		}
 		case SurviveSimpleEventType_ButtonEvent: {
@@ -62,7 +80,7 @@ int main(int argc, char **argv) {
 
 			FLT v1 = survive_simple_object_get_input_axis(button_event->object, SURVIVE_AXIS_TRACKPAD_X) / 2. + .5;
 
-			if (button_event->button_id != 255) {
+			if (button_event->button_id != SURVIVE_BUTTON_UNKNOWN) {
 				printf(" button %16s (%2d) ", SurviveButtonsStr(subtype, button_event->button_id),
 					   button_event->button_id);
 
