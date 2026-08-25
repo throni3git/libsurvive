@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
@@ -47,9 +47,22 @@
     <div id="cam">
       <canvas width="800" height="800" id="camcanvas"></canvas>
     </div>
-
-    <div id="console"></div>
     <div id="tooltip"></div>
-    <input type="range" id="time" min="0" max="100" value="100" step=".01" />
+
+    <div id="bottom_container">
+      <div id="covar_canvas_container"></div>
+      <label id="label_time">
+        Time:
+        <input
+          type="range"
+          id="time"
+          min="0"
+          max="100"
+          value="100"
+          step=".01"
+        />
+      </label>
+      <div id="console"></div>
+    </div>
   </body>
 </html>
