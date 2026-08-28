@@ -96,4 +96,5 @@ body {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid black;
+  pointer-events: none;
 }
